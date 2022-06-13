@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../models/pokemon';
 import { PokemonService } from '../pokemon.service';
 import { PokemonAPIReponse } from '../models/pokemonapiresponse';
-
+import {MatGridListModule} from '@angular/material/grid-list'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

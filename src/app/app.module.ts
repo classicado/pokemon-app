@@ -8,6 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 
+import { MatSliderModule } from '@angular/material/slider';
+import {MatCardModule} from '@angular/material/card';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +22,8 @@ import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.componen
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatSliderModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
