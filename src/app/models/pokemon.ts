@@ -1,11 +1,8 @@
-//declare module MyPokemon {
-
 import { Ability } from "./abilities";
 import { Move } from "./move";
 import { Species } from "./species";
 import { Sprites } from "./sprites";
 import { Stat } from "./stat";
-
 
   export interface Pokemon {
 
@@ -19,18 +16,10 @@ import { Stat } from "./stat";
     weight: number;
     default_image_url: string;
 
-
-    /* forms: Form[];
-    game_indices: GameIndice[];
-    held_items: HeldItem[];
-    location_area_encounters: string;
-
-    types: Type[];
-    past_types: PastType[];*/
     species: Species;
     abilities: Ability[];
     moves: Move[];
     stats: Stat[];
     sprites: Sprites;
   }
-//}
+

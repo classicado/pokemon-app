@@ -11,6 +11,7 @@ import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.componen
 import { MatSliderModule } from '@angular/material/slider';
 import {MatCardModule} from '@angular/material/card';
 
+
 @NgModule({
   declarations: [
     AppComponent,

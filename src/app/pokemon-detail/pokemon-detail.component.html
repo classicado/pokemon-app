@@ -4,12 +4,10 @@
   <div class="row pokemon-header"  *ngIf="pokemon">
 
     <h2 class="center">{{pokemon.name | uppercase}}</h2>
-    <!-- <div><span>id: </span>{{pokemon.id}}</div> -->
 
   </div>
 
   <div class="row"  *ngIf="pokemon">
-    <!-- <button type="button" (click)="goBack()">< Go back</button> -->
     <p>
       <span class="material-symbols-outlined back-button"  (click)="goBack()">
       arrow_back
@@ -23,7 +21,6 @@
       <img class="pokemon " src="{{pokemon.sprites.front_default}}"  >
       <img class="pokemon " src="{{pokemon.sprites.back_default }}"  >
       <img class="pokemon " src="{{pokemon.sprites.back_shiny }}"  >
-      <img class="pokemon " src="{{pokemon.sprites.back_shiny_female }}"  >
   </div>
 
   <div class="row"  *ngIf="pokemon">
@@ -32,7 +29,6 @@
 
       <mat-card class="pokemon-card"   >
         <mat-card-title> Stats </mat-card-title>
-        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
         <mat-card-content style="text-align: left;">
 
           <table class="table table-striped">
@@ -52,13 +48,8 @@
           </tbody>
           </table>
 
-
-
-
-          <!-- <p>ddddddddddddddddd d </p> -->
         </mat-card-content>
         <mat-card-actions>
-          <!-- <button mat-button routerLink="/pokemon/{{pokemon.id}}">View</button> -->
         </mat-card-actions>
       </mat-card>
 
@@ -70,7 +61,6 @@
 
       <mat-card class="pokemon-card"   >
         <mat-card-title> Abilities </mat-card-title>
-        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
         <mat-card-content style="text-align: left;">
 
 
@@ -78,10 +68,8 @@
             {{ability.ability.name}}
           </li>
 
-          <!-- <p>ddddddddddddddddd d </p> -->
         </mat-card-content>
         <mat-card-actions>
-          <!-- <button mat-button routerLink="/pokemon/{{pokemon.id}}">View</button> -->
         </mat-card-actions>
       </mat-card>
 
@@ -93,25 +81,20 @@
 
       <mat-card class="pokemon-cardd"   >
         <mat-card-title> Moves </mat-card-title>
-        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
         <mat-card-content style="text-align: left;">
-
 
           <ul class="columns" data-columns="2">
             <li *ngFor="let move of pokemon.moves" data-columns="2" >
               {{move.move.name}}
             </li>
           </ul>
-          <!-- <p>ddddddddddddddddd d </p> -->
         </mat-card-content>
         <mat-card-actions>
-          <!-- <button mat-button routerLink="/pokemon/{{pokemon.id}}">View</button> -->
         </mat-card-actions>
       </mat-card>
 
       <br>
     </div>
-
 
 
   </div>

@@ -6,21 +6,18 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Pokemon } from './models/pokemon';
 import { PokemonAPIReponse } from './models/pokemonapiresponse';
-//import { MessageService } from './message.service';
-
 
 @Injectable({ providedIn: 'root' })
 export class PokemonService {
 
-  private pokemonsUrl = 'https://pokeapi.co/api/v2/pokemon';  // URL to web api
+  private pokemonsUrl = 'https://pokeapi.co/api/v2/pokemon';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(
-    private http: HttpClient,
-   // private messageService: MessageService
+    private http: HttpClient
     ) { }
 
   /** GET pokemons from the server */
@@ -31,8 +28,6 @@ export class PokemonService {
         catchError(this.handleError<PokemonAPIReponse>('getPokemons'))
       );
   }
-
-
 
   /** GET pokemon by id. Return `undefined` when id not found */
   getPokemonNo404<Data>(id: number): Observable<Pokemon> {
@@ -57,20 +52,6 @@ export class PokemonService {
     );
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   /* GET pokemons whose name contains search term */
   searchPokemons(term: string): Observable<Pokemon[]> {
     if (!term.trim()) {
@@ -84,49 +65,6 @@ export class PokemonService {
       catchError(this.handleError<Pokemon[]>('searchPokemons', []))
     );
   }
-
-  //////// Save methods //////////
-
-  /** POST: add a new pokemon to the server */
-  addPokemon(pokemon: Pokemon): Observable<Pokemon> {
-    return this.http.post<Pokemon>(this.pokemonsUrl, pokemon, this.httpOptions).pipe(
-      tap((newPokemon: Pokemon) => this.log(`added pokemon w/ id=${newPokemon.id}`)),
-      catchError(this.handleError<Pokemon>('addPokemon'))
-    );
-  }
-
-  /** DELETE: delete the pokemon from the server */
-  deletePokemon(id: number): Observable<Pokemon> {
-    const url = `${this.pokemonsUrl}/${id}`;
-
-    return this.http.delete<Pokemon>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted pokemon id=${id}`)),
-      catchError(this.handleError<Pokemon>('deletePokemon'))
-    );
-  }
-
-  /** PUT: update the pokemon on the server */
-  updatePokemon(pokemon: Pokemon): Observable<any> {
-    return this.http.put(this.pokemonsUrl, pokemon, this.httpOptions).pipe(
-      tap(_ => this.log(`updated pokemon id=${pokemon.id}`)),
-      catchError(this.handleError<any>('updatePokemon'))
-    );
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   /**
