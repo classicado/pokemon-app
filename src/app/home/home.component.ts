@@ -26,6 +26,16 @@ export class HomeComponent implements OnInit {
         this.pokemons =  res.results;
         this.previousPageLink =  res.previous;
         this.nextPageLink =  res.next;
+
+        //Extract and set ID property
+        this.pokemons.forEach( (p) => {
+            let tempStr = p.url.replace("https://pokeapi.co/api/v2/pokemon/","");
+            tempStr = tempStr.replace("/","");
+            p.id = Number(tempStr);
+
+            p.default_image_url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/"+ Number(tempStr) +".png";
+        });
+
        });
 
   }

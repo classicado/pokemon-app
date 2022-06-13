@@ -12,7 +12,7 @@ import { PokemonAPIReponse } from './pokemonapiresponse';
 @Injectable({ providedIn: 'root' })
 export class PokemonService {
 
-  private pokemonsUrl = 'https://pokeapi.co/api/v2/pokemon/';  // URL to web api
+  private pokemonsUrl = 'https://pokeapi.co/api/v2/pokemon';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -25,14 +25,16 @@ export class PokemonService {
 
   /** GET pokemons from the server */
   getPokemons(): Observable<PokemonAPIReponse> {
-    return this.http.get<PokemonAPIReponse>(this.pokemonsUrl)
+    return this.http.get<PokemonAPIReponse>(this.pokemonsUrl+"?limit=100")
       .pipe(
         tap(_ => this.log('fetched pokemons')),
         catchError(this.handleError<PokemonAPIReponse>('getPokemons'))
       );
   }
 
-  /** GET hero by id. Return `undefined` when id not found */
+
+
+  /** GET pokemon by id. Return `undefined` when id not found */
   getPokemonNo404<Data>(id: number): Observable<Pokemon> {
     const url = `${this.pokemonsUrl}/?id=${id}`;
     return this.http.get<Pokemon[]>(url)
@@ -40,25 +42,39 @@ export class PokemonService {
         map(pokemons => pokemons[0]), // returns a {0|1} element array
         tap(h => {
           const outcome = h ? 'fetched' : 'did not find';
-          this.log(`${outcome} hero id=${id}`);
+          this.log(`${outcome} pokemon id=${id}`);
         }),
         catchError(this.handleError<Pokemon>(`getPokemon id=${id}`))
       );
   }
 
-  /** GET hero by id. Will 404 if id not found */
+  /** GET pokemon by id. Will 404 if id not found */
   getPokemon(id: number): Observable<Pokemon> {
     const url = `${this.pokemonsUrl}/${id}`;
     return this.http.get<Pokemon>(url).pipe(
-      tap(_ => this.log(`fetched hero id=${id}`)),
+      tap(_ => this.log(`fetched pokemon id=${id}`)),
       catchError(this.handleError<Pokemon>(`getPokemon id=${id}`))
     );
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   /* GET pokemons whose name contains search term */
   searchPokemons(term: string): Observable<Pokemon[]> {
     if (!term.trim()) {
-      // if not search term, return empty hero array.
+      // if not search term, return empty pokemon array.
       return of([]);
     }
     return this.http.get<Pokemon[]>(`${this.pokemonsUrl}/?name=${term}`).pipe(
@@ -71,31 +87,47 @@ export class PokemonService {
 
   //////// Save methods //////////
 
-  /** POST: add a new hero to the server */
-  addPokemon(hero: Pokemon): Observable<Pokemon> {
-    return this.http.post<Pokemon>(this.pokemonsUrl, hero, this.httpOptions).pipe(
-      tap((newPokemon: Pokemon) => this.log(`added hero w/ id=${newPokemon.id}`)),
+  /** POST: add a new pokemon to the server */
+  addPokemon(pokemon: Pokemon): Observable<Pokemon> {
+    return this.http.post<Pokemon>(this.pokemonsUrl, pokemon, this.httpOptions).pipe(
+      tap((newPokemon: Pokemon) => this.log(`added pokemon w/ id=${newPokemon.id}`)),
       catchError(this.handleError<Pokemon>('addPokemon'))
     );
   }
 
-  /** DELETE: delete the hero from the server */
+  /** DELETE: delete the pokemon from the server */
   deletePokemon(id: number): Observable<Pokemon> {
     const url = `${this.pokemonsUrl}/${id}`;
 
     return this.http.delete<Pokemon>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted hero id=${id}`)),
+      tap(_ => this.log(`deleted pokemon id=${id}`)),
       catchError(this.handleError<Pokemon>('deletePokemon'))
     );
   }
 
-  /** PUT: update the hero on the server */
-  updatePokemon(hero: Pokemon): Observable<any> {
-    return this.http.put(this.pokemonsUrl, hero, this.httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${hero.id}`)),
+  /** PUT: update the pokemon on the server */
+  updatePokemon(pokemon: Pokemon): Observable<any> {
+    return this.http.put(this.pokemonsUrl, pokemon, this.httpOptions).pipe(
+      tap(_ => this.log(`updated pokemon id=${pokemon.id}`)),
       catchError(this.handleError<any>('updatePokemon'))
     );
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /**
    * Handle Http operation that failed.

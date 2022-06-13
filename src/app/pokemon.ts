@@ -2,6 +2,7 @@
 
 
   export interface Pokemon {
+
     id: number;
     name: string;
     url: string;
@@ -10,6 +11,7 @@
     is_default: boolean;
     order: number;
     weight: number;
+    default_image_url: string;
     /*
     abilities: Ability[];
     forms: Form[];
@@ -22,5 +24,6 @@
     stats: Stat[];
     types: Type[];
     past_types: PastType[];*/
+
   }
 //}
