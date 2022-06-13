@@ -4,8 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Pokemon } from './pokemon';
-import { PokemonAPIReponse } from './pokemonapiresponse';
+import { Pokemon } from './models/pokemon';
+import { PokemonAPIReponse } from './models/pokemonapiresponse';
 //import { MessageService } from './message.service';
 
 

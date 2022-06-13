@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon } from '../pokemon';
+import { Pokemon } from '../models/pokemon';
 import { PokemonService } from '../pokemon.service';
-import { PokemonAPIReponse } from '../pokemonapiresponse';
+import { PokemonAPIReponse } from '../models/pokemonapiresponse';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
             tempStr = tempStr.replace("/","");
             p.id = Number(tempStr);
 
-            p.default_image_url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/"+ Number(tempStr) +".png";
+            p.default_image_url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+ Number(tempStr) +".png";
         });
 
        });

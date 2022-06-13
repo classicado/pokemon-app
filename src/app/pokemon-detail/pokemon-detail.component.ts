@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Pokemon } from '../pokemon';
+import { Pokemon } from '../models/pokemon';
 import { PokemonService } from '../pokemon.service';
 
 @Component({
@@ -26,7 +26,11 @@ export class PokemonDetailComponent implements OnInit {
   getPokemon(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     this.pokemonService.getPokemon(id)
-      .subscribe(pokemon => this.pokemon = pokemon);
+      .subscribe(pokemon => {
+        this.pokemon = pokemon;
+        console.log(this.pokemon)
+        console.log(this.pokemon.sprites.front_default)
+      });
   }
 
   goBack(): void {

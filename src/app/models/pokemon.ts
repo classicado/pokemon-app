@@ -1,5 +1,11 @@
 //declare module MyPokemon {
 
+import { Ability } from "./abilities";
+import { Move } from "./move";
+import { Species } from "./species";
+import { Sprites } from "./sprites";
+import { Stat } from "./stat";
+
 
   export interface Pokemon {
 
@@ -12,18 +18,19 @@
     order: number;
     weight: number;
     default_image_url: string;
-    /*
-    abilities: Ability[];
-    forms: Form[];
+
+
+    /* forms: Form[];
     game_indices: GameIndice[];
     held_items: HeldItem[];
     location_area_encounters: string;
-    moves: Move[];
-    species: Species;
-    sprites: Sprites;
-    stats: Stat[];
+
     types: Type[];
     past_types: PastType[];*/
-
+    species: Species;
+    abilities: Ability[];
+    moves: Move[];
+    stats: Stat[];
+    sprites: Sprites;
   }
 //}
