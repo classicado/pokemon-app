@@ -1,14 +1,5 @@
 
-
-
-
-
-
-
-
 <div class="container">
-
-
 
   <div class="row pokemon-header"  *ngIf="pokemon">
 
@@ -30,6 +21,9 @@
 
   <div class="row center"  *ngIf="pokemon">
       <img class="pokemon " src="{{pokemon.sprites.front_default}}"  >
+      <img class="pokemon " src="{{pokemon.sprites.back_default }}"  >
+      <img class="pokemon " src="{{pokemon.sprites.back_shiny }}"  >
+      <img class="pokemon " src="{{pokemon.sprites.back_shiny_female }}"  >
   </div>
 
   <div class="row"  *ngIf="pokemon">
@@ -40,13 +34,26 @@
         <mat-card-title> Stats </mat-card-title>
         <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
         <mat-card-content style="text-align: left;">
-          <p><img src=" "></p>
 
-          <li *ngFor="let stat of pokemon.stats" >
-            {{stat.stat.name}}
-            {{stat.base_stat}}
-            {{stat.effort}}
-          </li>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <td>Name</td>
+              <td>Base stat</td>
+              <td>Effort</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let stat of pokemon.stats">
+              <td>{{stat.stat.name}}</td>
+              <td>{{stat.base_stat}}</td>
+              <td>{{stat.effort}}</td>
+            </tr>
+          </tbody>
+          </table>
+
+
+
 
           <!-- <p>ddddddddddddddddd d </p> -->
         </mat-card-content>
@@ -65,7 +72,7 @@
         <mat-card-title> Abilities </mat-card-title>
         <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
         <mat-card-content style="text-align: left;">
-          <p><img src=" "></p>
+
 
           <li *ngFor="let ability of pokemon.abilities" >
             {{ability.ability.name}}
@@ -88,7 +95,7 @@
         <mat-card-title> Moves </mat-card-title>
         <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
         <mat-card-content style="text-align: left;">
-          <p><img src=" "></p>
+
 
           <ul class="columns" data-columns="2">
             <li *ngFor="let move of pokemon.moves" data-columns="2" >
